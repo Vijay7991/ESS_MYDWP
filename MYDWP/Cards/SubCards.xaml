@@ -5,19 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MYDWP.Cards"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="10" Background="White" Padding="15">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0,0,0,10">
-            <Border Width="50" Height="30" Background="{Binding IconBackground}" CornerRadius="6" HorizontalAlignment="Left">
-                <Image Source="{Binding Icon}" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Border x:Name="RootBorder" CornerRadius="10" Padding="5" BorderThickness="1">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="BorderBrush" Value="DarkBlue"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMainView}" Value="True">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="BorderBrush" Value="ForestGreen"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Row="0" Background="{Binding IconBackground}" CornerRadius="6" HorizontalAlignment="Left">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" FontSize="10"/>
+                    <Image Source="{Binding Icon}" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontSize="16" Foreground="#5a6e7f" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                </Grid>
             </Border>
-            <TextBlock Text="{Binding Title}" FontSize="16" Foreground="#5a6e7f" Margin="10,0,0,0" VerticalAlignment="Center"/>
-        </StackPanel>
-        <TextBlock Text="Applied For" FontWeight="Bold" FontSize="13" Foreground="#2d3e50"/>
-        <TextBlock Text="{Binding AppliedCount}" FontSize="24" Foreground="#2d3e50" Margin="0,5,0,0"/>
-        <TextBlock Text="{Binding PendingText}" Foreground="Red" FontWeight="Bold" Margin="0,10,0,0"/>
-    </StackPanel>
-    </Border>
 
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding HeaderText}" FontWeight="Bold" FontSize="13" Foreground="#2d3e50"/>
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding AppliedCount}" FontSize="24" Foreground="#2d3e50" Margin="0,5,0,0"/>
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding PendingText}" Foreground="Red" FontWeight="Bold" Margin="0,10,0,0"/>
+
+        </Grid>
+    </Border>
 </UserControl>

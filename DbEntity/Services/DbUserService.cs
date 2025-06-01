@@ -18,18 +18,18 @@ namespace DBEnity.Services
 
         public async Task AddAsync(DbUser user)
         {
-            _context.DbUsers.Add(user);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync(); 
         }
 
         public async Task<bool> UserHas(string userName, string password)
         {
-            return await _context.DbUsers.AnyAsync(u => u.UserName == userName && u.Password == password);
+            return await _context.Users.AnyAsync(u => u.UserName == userName && u.Password == password);
         }
 
         public async Task<List<DbUser>> GetAllAsync()
         {
-            return await _context.DbUsers.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
     }
 }

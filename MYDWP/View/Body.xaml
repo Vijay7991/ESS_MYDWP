@@ -13,15 +13,15 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="10" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="LightGray" Margin="5">
-                 <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="LightGray" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
                 </Grid>
                 <Image Grid.Column="1" Grid.RowSpan="3" Margin="50 0 0 0"
                        Source="/Resource/DashbordImage.png" Stretch="Fill"/>
-                </Grid>
+            </Grid>
             <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -73,26 +73,47 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <ItemsControl Grid.Row="0" ItemsSource="{Binding CardList}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <cards:SubCards Margin="5"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="1" >
-                    <cards:LeaderShipChard Margin="5"/>
+                <!-- Left Arrow -->
+                <Button Grid.Column="0" Content="&#x25C0;" 
+            Command="{Binding SlideLeftCommand}" 
+            VerticalAlignment="Center" />
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="5 20">
+                        <cards:SubCards DataContext="{Binding LeftCard}"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="5 15">
+                        <cards:SubCards DataContext="{Binding MidelCard}"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Margin="5 20">
+                        <cards:SubCards DataContext="{Binding RightCard}"/>
+                    </Grid>
                 </Grid>
+               
+                <Button Grid.Column="2" Content="&#x25B6;" 
+            Command="{Binding SlideRightCommand}" 
+            VerticalAlignment="Center" />
             </Grid>
+
+            <Grid Grid.Row="1" >
+                <cards:LeaderShipChard Margin="5"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

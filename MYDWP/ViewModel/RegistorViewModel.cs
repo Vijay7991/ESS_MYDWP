@@ -93,8 +93,8 @@ public class RegistorViewModel : ViewModelBase
             await _userService.AddAsync(user);
             ErrorMessage = "Registration successful!";
             ClearFields();
-            LoginViewModel.ShowLoginPage = Visibility.Collapsed;
-            ShowRegistorPage = Visibility.Visible;
+            ShowRegistorPage = Visibility.Collapsed;
+            LoginViewModel.ShowLoginPage = Visibility.Visible;
 }
         catch (Exception ex)
         {

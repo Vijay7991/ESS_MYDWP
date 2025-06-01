@@ -37,16 +37,20 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Password" Grid.Column="0" VerticalAlignment="Center" FontSize="14" />
-                <Border CornerRadius="10" Grid.Column="1" VerticalAlignment="Center" Margin="5" BorderThickness="1" BorderBrush="Black">
-                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Padding="5" Background="Transparent" BorderBrush="Transparent"/>
+                <Border CornerRadius="10" Padding="5" Grid.Column="1" VerticalAlignment="Center" Margin="5" BorderThickness="1" BorderBrush="Black">
+                    <TextBox BorderThickness="0"
+                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         Background="Transparent" BorderBrush="Transparent"/>
                 </Border>
                
                 
                 
             </Grid>
 
-            <Border Grid.Row="3" VerticalAlignment="Center" CornerRadius="10" BorderBrush="Green" BorderThickness="1" Background="LightBlue" >
-            <Button  Padding="8"
+            <Border Grid.Row="3" VerticalAlignment="Center"
+                    CornerRadius="10" BorderBrush="Green" Padding="5"
+                    BorderThickness="1" Background="LightBlue" >
+            <Button 
                     Content="Login" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                     FontWeight="Bold"
                     Command="{Binding LoginCommand}" />
@@ -54,7 +58,7 @@
 
                 <Button  Padding="8" Grid.Row="4" HorizontalAlignment="Left" Foreground="Blue" 
                     Content="Registor" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                    FontWeight="Bold"
+                    FontWeight="Bold" 
                     Command="{Binding RegisterCommand}" />
 
         </Grid>

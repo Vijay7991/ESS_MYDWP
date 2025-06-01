@@ -9,14 +9,16 @@ namespace DBEnity.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<DbUser> DbUsers { get; set; }
-
+        public DbSet<DbUser> Users { get; set; }
+        public DbSet<DbLeave> Leaves { get; set; }
+        public DbSet<DbTask> Tasks { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // DbUser configuration
             modelBuilder.Entity<DbUser>()
                 .Property(u => u.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -24,6 +26,48 @@ namespace DBEnity.Data
             modelBuilder.Entity<DbUser>()
                 .Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            modelBuilder.Entity<DbUser>()
+                .Property(u => u.UserName)
+                .IsRequired();
+
+            modelBuilder.Entity<DbUser>()
+                .Property(u => u.Email)
+                .IsRequired();
+
+            // DbLeave configuration
+            modelBuilder.Entity<DbLeave>()
+                .Property(l => l.Status)
+                .HasDefaultValue("Pending");
+
+            modelBuilder.Entity<DbLeave>()
+                .Property(l => l.Reason)
+                .HasDefaultValue(string.Empty);
+
+            modelBuilder.Entity<DbLeave>()
+                .HasOne(l => l.User)
+                .WithMany()
+                .HasForeignKey(l => l.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // DbTask configuration
+            modelBuilder.Entity<DbTask>()
+                .Property(t => t.Title)
+                .IsRequired();
+
+            modelBuilder.Entity<DbTask>()
+                .Property(t => t.Description)
+                .HasDefaultValue(string.Empty);
+
+            modelBuilder.Entity<DbTask>()
+                .Property(t => t.IsCompleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<DbTask>()
+                .HasOne(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public override int SaveChanges()
