@@ -78,7 +78,6 @@ public class RegistorViewModel : ViewModelBase
         }
 
         // TODO: Add password hashing & validation
-
         var user = new DbUser
         {
             UserName = UserName,

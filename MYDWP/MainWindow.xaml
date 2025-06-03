@@ -35,8 +35,7 @@
         </Grid>
         
         <Grid Visibility="{Binding LoginViewModel.IsVisible}" Background="#80000000" Panel.ZIndex="10">
-                <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}" 
-                                   VerticalAlignment="Center" Width="400" Height="300"/>
+                <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}" VerticalAlignment="Center" Width="400" Height="300"/>
         </Grid>
 
         <Grid Background="#80000000" Panel.ZIndex="10" Visibility="{Binding RegistorViewModel.ShowRegistorPage}">
