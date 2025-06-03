@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MYDWP"
         xmlns:Views="clr-namespace:MYDWP.View"
+        xmlns:components="clr-namespace:MYDWP.Components"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="650" MinWidth="900" Height="650"
         Background="LightGray" Width="1200">
@@ -32,17 +33,20 @@
                 <Views:Body DataContext="{Binding BodyViewModel}"/>
             </Border>
         </Grid>
-        <Grid Visibility="{Binding LoginViewModel.IsVisible}"
-              Background="#80000000" Panel.ZIndex="10">
-            <Grid Visibility="{Binding LoginViewModel.ShowLoginPage}">
-            <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}"
-                      VerticalAlignment="Center"
-                      Width="400" Height="300"/>
-            </Grid>
-            <Grid Visibility="{Binding RegistorViewModel.ShowRegistorPage}">
-                <Views:UserRegistor HorizontalAlignment="Center" DataContext="{Binding RegistorViewModel}"
-                    VerticalAlignment="Center" Width="400" Height="300"/>
-            </Grid>
+        
+        <Grid Visibility="{Binding LoginViewModel.IsVisible}" Background="#80000000" Panel.ZIndex="10">
+                <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}" 
+                                   VerticalAlignment="Center" Width="400" Height="300"/>
         </Grid>
-    </Grid>
+
+        <Grid Background="#80000000" Panel.ZIndex="10" Visibility="{Binding RegistorViewModel.ShowRegistorPage}">
+            <Views:UserRegistor HorizontalAlignment="Center" DataContext="{Binding RegistorViewModel}"
+                    VerticalAlignment="Center" Width="400" Height="300"/>
+        </Grid>
+
+        <Grid Background="#80000000" Visibility="{Binding MenuViewModel.ShowProfile}">
+            <components:UserProfile HorizontalAlignment="Center" Width="350" Height="500"
+                                    DataContext="{Binding UserProfileViewModel}" VerticalAlignment="Center" />
+        </Grid>
+    </Grid> 
 </Window>

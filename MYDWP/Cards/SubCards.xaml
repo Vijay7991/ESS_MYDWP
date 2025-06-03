@@ -35,7 +35,7 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="?" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" FontSize="10"/>
+                    <TextBlock Text="X" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" FontSize="10"/>
                     <Image Source="{Binding Icon}" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <TextBlock Grid.Column="1" Text="{Binding Title}" FontSize="16" Foreground="#5a6e7f" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 </Grid>

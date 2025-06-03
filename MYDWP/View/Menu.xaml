@@ -53,7 +53,7 @@
                         </Image.Clip>
                         <Image.ContextMenu>
                             <ContextMenu x:Name="ProfileContextMenu">
-                                <MenuItem Header="Profile" />
+                                <MenuItem Header="Profile" Command="{Binding ShowProfileCommand}" />
                                 <MenuItem Header="Settings" />
                                 <Separator/>
                                 <MenuItem Header="Logout" />

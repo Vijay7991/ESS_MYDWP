@@ -1,15 +1,18 @@
-﻿using System;
+﻿using MYDWP.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace MYDWP.ViewModel
 {
     public class MenuViewModel : ViewModelBase
     {
-
+        private Visibility _showPRofile = Visibility.Collapsed;
         private string _currentDateFormatted;
         public string CurrentDateFormatted
         {
@@ -23,7 +26,23 @@ namespace MYDWP.ViewModel
                 }
             }
         }
-
+        public Visibility ShowProfile
+        {
+            get { return _showPRofile; }
+            set
+            {
+                if (_showPRofile != value)
+                {
+                    _showPRofile = value;
+                    OnPropertyChanged(nameof(ShowProfile));
+                }
+            }
+        }
+        public ICommand ShowProfileCommand => new RelayCommand(() =>
+        {
+            if (ShowProfile == Visibility.Collapsed) ShowProfile = Visibility.Visible;
+            else ShowProfile = Visibility.Collapsed;
+        });
         public MenuViewModel()
         {
             var timer = new DispatcherTimer
