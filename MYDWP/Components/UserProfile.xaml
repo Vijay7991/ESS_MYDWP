@@ -7,7 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="400">
     <Grid Background="White">
-        <Border Padding="10" CornerRadius="10" Background="#FFF" BorderBrush="#DDD" BorderThickness="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Button Content="X"  FontSize="20" Command="{Binding CloseCommand}"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="20" Height="20"/>
+        </Grid>
+        <Border Padding="10 20 0 0" Grid.Row="1" CornerRadius="10" Background="#FFF" BorderBrush="#DDD" BorderThickness="1">
             <StackPanel>
                 <!-- Profile Header -->
                 <Grid Margin="0,0,0,20" VerticalAlignment="Center">

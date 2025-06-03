@@ -45,7 +45,7 @@
 
         <Grid Background="#80000000" Visibility="{Binding MenuViewModel.ShowProfile}">
             <components:UserProfile HorizontalAlignment="Center" Width="350" Height="500"
-                                    DataContext="{Binding UserProfileViewModel}" VerticalAlignment="Center" />
+                                    DataContext="{Binding MenuViewModel.UserProfileViewModel}" VerticalAlignment="Center" />
         </Grid>
     </Grid> 
 </Window>

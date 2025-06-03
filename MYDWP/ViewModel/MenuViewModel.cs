@@ -1,4 +1,5 @@
 ﻿using MYDWP.Command;
+using MYDWP.ViewModel.ComponentsViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace MYDWP.ViewModel
 {
     public class MenuViewModel : ViewModelBase
     {
+
+
+        public UserProfileViewModel UserProfileViewModel { get;set; }
         private Visibility _showPRofile = Visibility.Collapsed;
         private string _currentDateFormatted;
         public string CurrentDateFormatted
@@ -45,6 +49,7 @@ namespace MYDWP.ViewModel
         });
         public MenuViewModel()
         {
+            UserProfileViewModel = new UserProfileViewModel(this);
             var timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(1)
