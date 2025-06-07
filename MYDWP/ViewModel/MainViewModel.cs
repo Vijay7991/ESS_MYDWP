@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DBEnity.Services;
+using MYDWP.ViewModel.ComponentsViewModel;
 
 namespace MYDWP.ViewModel
 {
@@ -17,16 +18,16 @@ namespace MYDWP.ViewModel
         public LoginViewModel LoginViewModel { get; set; }
 
 
+
         public MainViewModel(DbUserService UserService)
         {
             BodyViewModel = new BodyViewModel();
             RegistorViewModel = new RegistorViewModel(UserService);
             LoginViewModel = new LoginViewModel(UserService);
+            MenuViewModel = new MenuViewModel();
 
             RegistorViewModel.LoginViewModel = LoginViewModel;
             LoginViewModel.RegistorViewModel = RegistorViewModel;
-
-            MenuViewModel = new MenuViewModel();
         }
     }
 }

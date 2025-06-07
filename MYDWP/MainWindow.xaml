@@ -20,12 +20,7 @@
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Margin="10" CornerRadius="10" Background="AntiqueWhite" Padding="2">
                 <Border.Effect>
-                    <DropShadowEffect 
-                Color="Black" 
-                Direction="270" 
-                ShadowDepth="4" 
-                Opacity="0.4" 
-                BlurRadius="10"/>
+                    <DropShadowEffect Color="Black" Direction="270" ShadowDepth="4" Opacity="0.4" BlurRadius="10"/>
                 </Border.Effect>
                 <Views:Menu BorderBrush="Transparent" DataContext="{Binding MenuViewModel}" BorderThickness="0"/>
             </Border>
@@ -34,15 +29,19 @@
             </Border>
         </Grid>
         
+        <!-- Login Overlay -->
         <Grid Visibility="{Binding LoginViewModel.IsVisible}" Background="#80000000" Panel.ZIndex="10">
-                <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}" VerticalAlignment="Center" Width="400" Height="300"/>
+            <Views:LoginWindow HorizontalAlignment="Center" DataContext="{Binding LoginViewModel}" 
+                               VerticalAlignment="Center" Width="400" />
         </Grid>
 
+        <!-- Register Overlay -->
         <Grid Background="#80000000" Panel.ZIndex="10" Visibility="{Binding RegistorViewModel.ShowRegistorPage}">
             <Views:UserRegistor HorizontalAlignment="Center" DataContext="{Binding RegistorViewModel}"
-                    VerticalAlignment="Center" Width="400" Height="300"/>
+                                VerticalAlignment="Center" Width="400"/>
         </Grid>
 
+        <!-- Profile Overlay -->
         <Grid Background="#80000000" Visibility="{Binding MenuViewModel.ShowProfile}">
             <components:UserProfile HorizontalAlignment="Center" Width="350" Height="500"
                                     DataContext="{Binding MenuViewModel.UserProfileViewModel}" VerticalAlignment="Center" />

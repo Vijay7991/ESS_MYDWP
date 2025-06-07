@@ -12,8 +12,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Button Content="X"  FontSize="20" Command="{Binding CloseCommand}"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="20" Height="20"/>
+        <Grid Grid.Row="0" HorizontalAlignment="Right" Background="Gray">
+            <Button Command="{Binding CloseCommand}" ToolTip="Close" Content="X" FontWeight="Bold" Padding="8 2" FontSize="18"
+                    Background="Transparent" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Right" Cursor="Hand">
+            </Button>
         </Grid>
         <Border Padding="10 20 0 0" Grid.Row="1" CornerRadius="10" Background="#FFF" BorderBrush="#DDD" BorderThickness="1">
             <StackPanel>
@@ -28,6 +30,7 @@
                             <ImageBrush ImageSource="pack://application:,,,/Resource/ProfileImage.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
+                    
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

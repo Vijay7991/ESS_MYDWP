@@ -4,63 +4,71 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="350">
-    <Grid Background="AntiqueWhite" >
-        <Grid Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="Login"
-                       FontSize="24"
+             d:DesignHeight="400" d:DesignWidth="350">
+    <UserControl.Resources>
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Background" Value="#FFF"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+        <Style x:Key="ModernLabel" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+        </Style>
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#1976D2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0,16,0,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style x:Key="ModernLink" TargetType="Button">
+            <Setter Property="Foreground" Value="#1976D2"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="8,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="#F4F6FB" CornerRadius="16" Padding="30">
+        <StackPanel>
+            <TextBlock Text="Sign In"
+                       FontSize="28"
                        FontWeight="Bold"
+                       Foreground="#1976D2"
                        HorizontalAlignment="Center"
-                       Margin="0,0,0,20" />
-
-            <Grid Grid.Row="1" Margin="0,10" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Username" Grid.Column="0" VerticalAlignment="Center" FontSize="14" />
-                <Border CornerRadius="10" Grid.Column="1" VerticalAlignment="Center" Margin="5" BorderThickness="1" BorderBrush="Black">
-                    <TextBox BorderThickness="0" Background="Transparent" BorderBrush="Transparent" Padding="5"  Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" />
-                </Border>
-            </Grid>
-
-            <Grid Grid.Row="2" Margin="0,10" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Password" Grid.Column="0" VerticalAlignment="Center" FontSize="14" />
-                <Border CornerRadius="10" Padding="5" Grid.Column="1" VerticalAlignment="Center" Margin="5" BorderThickness="1" BorderBrush="Black">
-                    <TextBox BorderThickness="0"
-                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
-                         Background="Transparent" BorderBrush="Transparent"/>
-                </Border>
-               
-                
-                
-            </Grid>
-
-            <Border Grid.Row="3" VerticalAlignment="Center"
-                    CornerRadius="10" BorderBrush="Green" Padding="5"
-                    BorderThickness="1" Background="LightBlue" >
-            <Button 
-                    Content="Login" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                    FontWeight="Bold"
-                    Command="{Binding LoginCommand}" />
+                       Margin="0,0,0,24"/>
+            <TextBlock Text="Username" Style="{StaticResource ModernLabel}"/>
+            <Border CornerRadius="10" BorderThickness="1.5" Background="White" BorderBrush="Black" Padding="10 5">
+                <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
 
-                <Button  Padding="8" Grid.Row="4" HorizontalAlignment="Left" Foreground="Blue" 
-                    Content="Registor" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                    FontWeight="Bold" 
-                    Command="{Binding RegisterCommand}" />
+            <TextBlock Text="Password" Style="{StaticResource ModernLabel}"/>
+            <Border CornerRadius="10" BorderThickness="1.5" Background="White" BorderBrush="Black" Padding="10 5">
+                <TextBox Style="{StaticResource ModernTextBox}" 
+                    Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
+                    Padding="10,6" FontFamily="Segoe UI" FontSize="15" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Left" MaxLength="100" />
+            </Border>
+          
+            <!-- Note: TextBox used for password as requested. For real password masking, use PasswordBox. -->
 
-        </Grid>
-    </Grid>
+            <Button Content="Login"
+                    Style="{StaticResource ModernButton}"
+                    Command="{Binding LoginCommand}"/>
+
+            <Button Content="Register"
+                    Style="{StaticResource ModernLink}" Command="{Binding RegisterCommand}" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+        </StackPanel>
+    </Border>
 </UserControl>

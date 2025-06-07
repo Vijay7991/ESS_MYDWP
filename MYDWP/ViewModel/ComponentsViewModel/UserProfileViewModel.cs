@@ -12,19 +12,18 @@ namespace MYDWP.ViewModel.ComponentsViewModel
     {
         private MenuViewModel menuViewModel;
 
-
-        private readonly RelayCommand _loseCommand;
-        public ICommand CloseCommand => _loseCommand;
+        private readonly RelayCommand _closeCommand;
+        public ICommand CloseCommand => _closeCommand ?? new RelayCommand(Cose);
 
         public UserProfileViewModel(MenuViewModel menuViewModel)
         {
             this.menuViewModel = menuViewModel;
-
-            //menuViewModel.ShowProfile = System.Windows.Visibility.Collapsed;
         }
 
-
-
+        private void Cose()
+        {
+            menuViewModel.ShowProfile = System.Windows.Visibility.Collapsed;
+        }
 
     }
 }

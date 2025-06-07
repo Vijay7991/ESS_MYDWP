@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using DBEnity.Data;
 using DbEntity.Models;
+using Globals.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBEnity.Services
@@ -16,18 +17,18 @@ namespace DBEnity.Services
             _context = context;
         }
 
-        public async Task AddAsync(DbUser user)
+        public async Task AddAsync(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync(); 
         }
 
-        public async Task<bool> UserHas(string userName, string password)
+        public async Task<bool> GetUser(string userName, string password)
         {
             return await _context.Users.AnyAsync(u => u.UserName == userName && u.Password == password);
         }
 
-        public async Task<List<DbUser>> GetAllAsync()
+        public async Task<List<User>> GetAllAsync()
         {
             return await _context.Users.ToListAsync();
         }

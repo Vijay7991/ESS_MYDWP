@@ -16,6 +16,7 @@ namespace MYDWP.ViewModel
 
 
         public UserProfileViewModel UserProfileViewModel { get;set; }
+
         private Visibility _showPRofile = Visibility.Collapsed;
         private string _currentDateFormatted;
         public string CurrentDateFormatted

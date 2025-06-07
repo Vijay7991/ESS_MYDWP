@@ -1,4 +1,4 @@
-﻿using DbEntity.Models;
+﻿using Globals.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -9,9 +9,10 @@ namespace DBEnity.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<DbUser> Users { get; set; }
-        public DbSet<DbLeave> Leaves { get; set; }
-        public DbSet<DbTask> Tasks { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<User> Users { get; set; }
+       // public DbSet<DbLeave> Leaves { get; set; }
+        //public DbSet<DbTask> Tasks { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
@@ -19,54 +20,26 @@ namespace DBEnity.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // DbUser configuration
-            modelBuilder.Entity<DbUser>()
+            modelBuilder.Entity<User>()
                 .Property(u => u.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            modelBuilder.Entity<DbUser>()
+            modelBuilder.Entity<User>()
                 .Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            modelBuilder.Entity<DbUser>()
+            modelBuilder.Entity<User>()
                 .Property(u => u.UserName)
                 .IsRequired();
 
-            modelBuilder.Entity<DbUser>()
+            modelBuilder.Entity<User>()
                 .Property(u => u.Email)
                 .IsRequired();
 
-            // DbLeave configuration
-            modelBuilder.Entity<DbLeave>()
-                .Property(l => l.Status)
-                .HasDefaultValue("Pending");
-
-            modelBuilder.Entity<DbLeave>()
-                .Property(l => l.Reason)
-                .HasDefaultValue(string.Empty);
-
-            modelBuilder.Entity<DbLeave>()
-                .HasOne(l => l.User)
-                .WithMany()
-                .HasForeignKey(l => l.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // DbTask configuration
-            modelBuilder.Entity<DbTask>()
-                .Property(t => t.Title)
-                .IsRequired();
-
-            modelBuilder.Entity<DbTask>()
-                .Property(t => t.Description)
-                .HasDefaultValue(string.Empty);
-
-            modelBuilder.Entity<DbTask>()
-                .Property(t => t.IsCompleted)
-                .HasDefaultValue(false);
-
-            modelBuilder.Entity<DbTask>()
-                .HasOne(t => t.User)
-                .WithMany()
-                .HasForeignKey(t => t.UserId)
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.UserProfile)
+                .WithOne(p => p.User)
+                .HasForeignKey<UserProfile>(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
 
@@ -85,11 +58,11 @@ namespace DBEnity.Data
         private void SetTimestamps()
         {
             var entries = ChangeTracker.Entries()
-                .Where(e => e.Entity is DbUser && (e.State == EntityState.Added || e.State == EntityState.Modified));
+                .Where(e => e.Entity is User && (e.State == EntityState.Added || e.State == EntityState.Modified));
 
             foreach (var entry in entries)
             {
-                var entity = (DbUser)entry.Entity;
+                var entity = (User)entry.Entity;
                 entity.UpdatedAt = DateTime.UtcNow;
 
                 if (entry.State == EntityState.Added)

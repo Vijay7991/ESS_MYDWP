@@ -25,7 +25,7 @@ namespace MYDWP.ViewModel
                 OnPropertyChanged(nameof(MainWindowBlureEffect));
             }
         }
-       private Visibility _loginVisibility = Visibility.Visible;
+        private Visibility _loginVisibility = Visibility.Visible;
         public Visibility IsVisible
         {
             get { return _loginVisibility; }
@@ -35,7 +35,6 @@ namespace MYDWP.ViewModel
                 OnPropertyChanged(nameof(IsVisible));
             }
         }
-
 
         private string _userName = "Admin";
         public string UserName
@@ -105,7 +104,6 @@ namespace MYDWP.ViewModel
 
         private async void Login()
         {
-
             bool ValidUSer = await UserService.UserHas(UserName, Password);
 
             if (ValidUSer)
